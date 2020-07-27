@@ -1,6 +1,3 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-
 from machinemode import dataprep,modeldef
 
     
@@ -10,10 +7,6 @@ def main():
     model = modeldef.build_model(x_train,y_train,'load')    
     
     predictions = model.predict(x_test)
-    print(modeldef.classification_report(y_test, predictions))
-    print(modeldef.confusion_matrix(y_test, predictions))
-    modeldef.plot_confusion_matrix(model, x_test, y_test)
-    plt.savefig("Plots/conf_m.png", transparent=True)
-    
+    modeldef.model_perf(model,x_test,y_test,predictions)
 if __name__ == "__main__":
     main()

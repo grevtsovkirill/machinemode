@@ -1,6 +1,7 @@
 import xgboost
 from sklearn.metrics import classification_report,confusion_matrix, plot_confusion_matrix
 import pickle
+import matplotlib.pyplot as plt
 
 
 def build_model(x,y,opt='def'):
@@ -24,3 +25,9 @@ def build_model(x,y,opt='def'):
             model = pickle.load(f)
     
     return model
+
+def model_perf(model,x,y,pred):
+    print(classification_report(y, pred))
+    print(confusion_matrix(y, pred))
+    plot_confusion_matrix(model, x, y)
+    plt.savefig("Plots/conf_m.png", transparent=True)
