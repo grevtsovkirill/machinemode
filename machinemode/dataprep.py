@@ -17,16 +17,16 @@ class MachineData:
     def data_prep(self,varlist=[]):
         self.load_data()
         Y = self.cleandata['activity']
+        n_class = len(Y.value_counts().index)
+        self.n_class = n_class
         if len(varlist)==0:
             varlist0 = list(self.cleandata.select_dtypes(include='number').columns)
             todel = ['activity','timestamp','Unnamed: 0']
             varlist = [it for it in varlist0 if it not in todel]
         
         X = self.cleandata[varlist]
-        n_class = len(Y.value_counts().index)
         
         x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.3)
-        #return x_train, x_test, y_train, y_test, n_class
         self.x_test = x_test
         self.y_test = y_test
         self.x_train = x_train
