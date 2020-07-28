@@ -13,6 +13,14 @@ def main():
     predictions = model.predict(data.x_test)
     modeldef.model_perf(model,data.x_test,data.y_test,predictions)
 
+
+    '''
+    Alternatively - usage for existing model, to apply on new data:
     
+        data2 = dataprep.MachineData()
+        data2.data_apply()
+        model2 = model.load()
+        print(model2.predict(data2.X))
+    '''
 if __name__ == "__main__":
     main()
