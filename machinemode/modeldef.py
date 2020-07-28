@@ -4,12 +4,19 @@ import xgboost
 from sklearn.metrics import classification_report,confusion_matrix, plot_confusion_matrix
 import matplotlib.pyplot as plt
 
-def get_model(x,y,num_class,opt=''):
-
-    if opt == 'load' and os.path.exists('model_xgb_def.pickle'):
+def load_model():
+    try: 
         print("read pre-trained model")
         with open('model_xgb_def.pickle', 'rb') as f:
             model = pickle.load(f)
+            return model
+    except:
+        print("model doesn't exist - please train it!")
+
+def get_model(x,y,num_class,opt='train'):
+
+    if opt == 'load' and os.path.exists('model_xgb_def.pickle'):
+        model = load_model()        
     else:
         print("build model")
         model = build_model(num_class)
