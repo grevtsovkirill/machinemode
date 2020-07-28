@@ -19,7 +19,7 @@ def main():
     
         data2 = dataprep.MachineData()
         data2.data_apply()
-        model2 = model.load()
+        model2 = modeldef.load()
         print(model2.predict(data2.X))
     '''
 if __name__ == "__main__":
