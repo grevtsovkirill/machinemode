@@ -36,4 +36,6 @@ def model_perf(model,x,y,pred):
     print(classification_report(y, pred))
     print(confusion_matrix(y, pred))
     plot_confusion_matrix(model, x, y)
+    if not os.path.exists('Plots'):
+        os.makedirs('Plots')
     plt.savefig("Plots/conf_m.png", transparent=True)
